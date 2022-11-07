@@ -1,0 +1,64 @@
+@charset "ISO-8859-1";
+
+body{
+	margin: 2;
+	height: 98vh;
+}
+
+.grid-container{
+	height: 98vh;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 0.3fr 1fr 0.5fr 0.1fr;
+}
+
+.header{
+	grid-column: 1/4;
+	grid-row: 1/2;
+	border-style: solid;
+	border-width: 2px;
+	border-color: red;
+	border-bottom: none;
+}
+
+.main{
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr 0.3fr;
+	grid-column: 1/4;
+	grid-row: 2/4;
+	border-style: solid;
+	border-width: 2px;
+	border-color: red;
+	border-top: none;
+	border-bottom: none;
+}
+
+.formulario{
+	grid-column: 2/3;
+	grid-row: 1/2;
+}
+
+.botones{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-row: 2/3;
+	grid-column: 2/3;
+}
+
+#signup{
+	grid-column: 1/2;
+}
+
+#login{
+	grid-column: 2/3;
+}
+
+.footer{
+	grid-column: 1/4;
+	grid-row: 4/5;
+	border-style: solid;
+	border-width: 2px;
+	border-color: red;
+	border-top: none;
+}
