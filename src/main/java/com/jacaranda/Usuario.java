@@ -17,6 +17,7 @@ public class Usuario {
 	private int id;
 	private String nombre;
 	private String apellidos;
+	private String password;
 	private LocalDateTime fecha;
 	private String genero;
 	@OneToMany(mappedBy="id",cascade = CascadeType.ALL,orphanRemoval = true)
@@ -27,11 +28,11 @@ public class Usuario {
 		super();
 	}
 	
-	public Usuario(int id, String nombre, String apellidos, String genero, LocalDateTime fecha) {
+	public Usuario(String nombre, String apellidos, String password, String genero, LocalDateTime fecha) {
 		super();
-		this.id = id;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
+		this.password = password;
 		this.fecha = fecha;
 		this.genero = genero;
 		this.listaCompra = new ArrayList<Compra>();

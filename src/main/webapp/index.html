@@ -7,19 +7,27 @@
 </head>
 <body>
 	<div class="grid-container">
-		<div class="header"> header </div>
+		<div class="header"> <h1>Componentes del Barco</h1> </div>
 		<div class="main">
 			<div class="formulario">
-				<form id="formulario-in" action="login.jsp" method="post">
-					
+				<form id="formulario-in" action="Servlet.java" method="post">
+					<h2>INICIAR SESION</h2>
+					<br>
+					Nombre de usuario: <input type="text" id="username" name="username" required>
+					<br>
+					Contraseña: <input type="password" id="password" name="username" required>
+					<br>
+					<button type="submit">Entrar</button>
 				</form>
 			</div>
-			<div class="botones">
-				<div id="signup"> signup </div>
-				<div id="login"> login </div>
+			<div class="register">
+				<form id="register-in" action="ServletRegister.java" method="post">
+					¿No tienes cuenta?
+					<button type="submit">Registrate</button>
+				</form>
 			</div>
 		</div>
-		<div class="footer"> footer </div>
+		<div class="footer"> Componentes del Barco TM all rights reserved </div>
 	</div>
 </body>
 </html>

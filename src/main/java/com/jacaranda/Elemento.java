@@ -8,7 +8,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -30,9 +29,8 @@ public class Elemento {
 		super();
 	}
 	
-	public Elemento(int id, String nombre, String descripcion, double precio, Categoria categoria) {
+	public Elemento(String nombre, String descripcion, double precio, Categoria categoria) {
 		super();
-		this.id = id;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.precio = precio;
