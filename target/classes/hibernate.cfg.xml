@@ -4,11 +4,15 @@
 <hibernate-configuration>
  <session-factory name="">
   <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/tiendaAcosta/?useSSL=false</property>
+  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/miTiendaAcosta?useSSL=false</property>
   <property name="hibernate.connection.username">acosta</property>
   <property name="hibernate.connection.password">felipe</property>
   <property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
   <property name="hibernate.show_sql">true</property>
   <property name="hibernate.format_sql">true</property>
+  <mapping class="com.jacaranda.Usuario"/>
+  <mapping class="com.jacaranda.Elemento"/>
+  <mapping class="com.jacaranda.Categoria"/>
+  <mapping class="com.jacaranda.Compra"/>
  </session-factory>
 </hibernate-configuration>

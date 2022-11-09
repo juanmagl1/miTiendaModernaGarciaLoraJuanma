@@ -88,7 +88,16 @@ public class Usuario {
 		this.listaCompra = listaCompra;
 	}
 	
+	public String getPassword() {
+		return password;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 	//HASHCODE & EQUALS
+
 
 	@Override
 	public int hashCode() {

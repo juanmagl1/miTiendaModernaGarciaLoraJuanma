@@ -23,9 +23,8 @@ public class Categoria {
 		super();
 	}
 	
-	public Categoria(int id, String nombre, String descripcion) {
+	public Categoria(String nombre, String descripcion) {
 		super();
-		this.id = id;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.listaElemento = new ArrayList<Elemento>();
