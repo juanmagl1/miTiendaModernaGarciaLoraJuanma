@@ -10,6 +10,8 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 public class CRUDSession {
 
 	private StandardServiceRegistry sr;
@@ -22,6 +24,14 @@ public class CRUDSession {
 		session = sf.openSession();
 	}
 	
+	public String getMd5(String input) {
+		String pass = null;
+		if(input!=null) {
+			pass = DigestUtils.md5Hex(input);
+		}
+		return pass;
+	}
+	
 	//CONTROL DE USUARIOS
 	
 	public void saveUser(String nombre,String apellidos, String password, String genero, LocalDateTime fecha) {
@@ -31,34 +41,9 @@ public class CRUDSession {
 		session.getTransaction().commit();
 	}
 	
-	public Usuario getUser(int id) {
-		Usuario res = session.get(Usuario.class, id);
-		return res;
-	}
-	
 	public Usuario getUser(String nombre) {
-		List<Usuario> listaUsuarios = getAllUser();
-		Usuario res = new Usuario();
-		for (Usuario usuario:listaUsuarios) {
-			if(usuario.getNombre().equals(nombre)) {
-				res = usuario;
-			}
-		}
+		Usuario res =(Usuario) session.get(Usuario.class, nombre);
 		return res;
-	}
-	
-	public List<Usuario> getAllUser(){
-		List<Usuario> listaUsuarios = new ArrayList<>();
-		Usuario usuario;
-		int id = 1;
-		do {
-			usuario = session.get(Usuario.class, id);
-			if(usuario != null) {
-				listaUsuarios.add(usuario);
-			}
-			id++;
-		}while(usuario != null);
-		return listaUsuarios;
 	}
 	
 	public void deleteUser(int id) {

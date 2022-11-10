@@ -20,7 +20,7 @@ public class Elemento {
 	private String descripcion;
 	private double precio;
 	@ManyToOne
-	@JoinColumn(name="userId")
+	@JoinColumn(name="id_categoria")
 	private Categoria categoria;
 	@OneToMany(mappedBy="id",cascade = CascadeType.ALL,orphanRemoval = true)
 	private List<Compra> listaCompra;

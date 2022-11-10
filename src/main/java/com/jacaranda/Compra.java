@@ -12,7 +12,8 @@ import javax.persistence.ManyToOne;
 public class Compra {
 	
 	@Id
-	private int id_user;
+	private int id;
+	private String id_user;
 	private int id_elemento;
 	private int cantidad;
 	private double precio;
@@ -30,7 +31,7 @@ public class Compra {
 	
 	public Compra(Usuario user, Elemento elemento, int cantidad, double precio, LocalDateTime fecha) {
 		super();
-		this.id_user = user.getId();
+		this.id_user = user.getNombre();
 		this.id_elemento = elemento.getId();
 		this.cantidad = cantidad;
 		this.precio = precio;
@@ -39,11 +40,11 @@ public class Compra {
 	
 	//GETTERS & SETTERS
 
-	public int getId_user() {
+	public String getId_user() {
 		return id_user;
 	}
 
-	public void setId_user(int id_user) {
+	public void setId_user(String id_user) {
 		this.id_user = id_user;
 	}
 

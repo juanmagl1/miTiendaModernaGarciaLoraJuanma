@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.codec.digest.DigestUtils;
-
 /**
  * Servlet implementation class Servlet
  */
@@ -48,17 +46,16 @@ public class ServletLog extends HttpServlet {
 		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		String passwordEncript = DigestUtils.md5Hex(password);
+		//String password = crs.getMd5(request.getParameter("password"));
 		
-		if(username != null && passwordEncript != null) {
-			if(crs.getUser(username) != null && crs.getUser(username).getNombre().equals(username) && crs.getUser(username).getPassword().equals(passwordEncript)) {
+		if(username != null && password != null) {
+			if(crs.getUser(username) != null && crs.getUser(username).getNombre().equals(username) && crs.getUser(username).getPassword().equals(password)) {
 				HttpSession session = request.getSession();
 				session.setAttribute("login", "True");
 				session.setAttribute("usuario", username);
-				
 				response.setContentType("text/html");
 				
-				response.getWriter().append(
+				out.append(
 						"<!DOCTYPE html>"
 						+ "<html>"
 						+ "<head>"
@@ -81,13 +78,14 @@ public class ServletLog extends HttpServlet {
 				List<Elemento> listaElementos = crs.getAllElemento();
 				
 				for (Elemento elemento : listaElementos) {
-					response.getWriter().append(
+					out.append(
 							"<tr>"
 							+ "<td>" + elemento.getId() + "</td>"
 							+ "<td>" + elemento.getNombre() + "</td>"
 							+ "<td>" + elemento.getDescripcion() + "</td>"
-						    + "<td>" + elemento.getPrecio() + "<td>"
+						    + "<td>" + elemento.getPrecio() + "</td>"
 						    + "<td>" + elemento.getCategoria().getNombre() + "</td>"
+						    + "</tr>"
 							);
 				}
 			}else {

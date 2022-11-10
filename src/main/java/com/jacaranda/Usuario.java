@@ -14,7 +14,6 @@ import javax.persistence.OneToMany;
 public class Usuario {
 	
 	@Id
-	private int id;
 	private String nombre;
 	private String apellidos;
 	private String password;
@@ -39,14 +38,6 @@ public class Usuario {
 	}
 	
 	//GETTERS & SETTERS
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getNombre() {
 		return nombre;
@@ -95,13 +86,10 @@ public class Usuario {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	//HASHCODE & EQUALS
-
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(apellidos, fecha, genero, id, listaCompra, nombre);
+		return Objects.hash(apellidos, fecha, genero, listaCompra, nombre, password);
 	}
 
 	@Override
@@ -114,8 +102,8 @@ public class Usuario {
 			return false;
 		Usuario other = (Usuario) obj;
 		return Objects.equals(apellidos, other.apellidos) && Objects.equals(fecha, other.fecha)
-				&& Objects.equals(genero, other.genero) && id == other.id
-				&& Objects.equals(listaCompra, other.listaCompra) && Objects.equals(nombre, other.nombre);
+				&& Objects.equals(genero, other.genero) && Objects.equals(listaCompra, other.listaCompra)
+				&& Objects.equals(nombre, other.nombre) && Objects.equals(password, other.password);
 	}
 
 }
