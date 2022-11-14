@@ -1,4 +1,4 @@
-package com.jacaranda;
+package com.jacaranda.Serv;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.jacaranda.Clases.Elemento;
+import com.jacaranda.Control.CRUDSession;
 
 /**
  * Servlet implementation class Servlet
@@ -92,8 +95,6 @@ public class ServletLog extends HttpServlet {
 				response.sendRedirect("Error.html");
 			}
 		}
-		
-		doGet(request, response);
 	}
 
 }

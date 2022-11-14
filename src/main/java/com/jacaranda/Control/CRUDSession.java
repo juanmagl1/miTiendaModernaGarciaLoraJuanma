@@ -1,4 +1,4 @@
-package com.jacaranda;
+package com.jacaranda.Control;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -9,6 +9,11 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+
+import com.jacaranda.Clases.Categoria;
+import com.jacaranda.Clases.Compra;
+import com.jacaranda.Clases.Elemento;
+import com.jacaranda.Clases.Usuario;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
