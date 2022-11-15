@@ -2,11 +2,13 @@
 
 body{
 	margin: 2;
-	height: 98vh;
+	min-height: 98vh;
+	max-height: auto;
 }
 
 .grid-container{
-	height: 98vh;
+	min-height: 98vh;
+	max-height: auto;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-rows: 0.3fr 1fr 0.5fr 0.1fr;
@@ -19,6 +21,7 @@ body{
 	border-width: 2px;
 	border-color: red;
 	border-bottom: none;
+	text-align: center;
 }
 
 .main{
@@ -32,17 +35,64 @@ body{
 	border-color: red;
 	border-top: none;
 	border-bottom: none;
+	background-color: #005050
 }
 
 .formulario{
 	grid-column: 2/3;
 	grid-row: 1/2;
+	background-color: #10A070;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #0000F0;
+	border-radius: 90px;
+	margin-top: 10vh;
+	margin-bottom: 5vh;
+	max-height: auto;
+}
+
+.gender{
+	margin-left: 10%;
+}
+
+.formulario h2{
+	text-align: center;
+}
+
+span{
+	margin-left: 10%;
+}
+
+.formulario button{
+	width: 20%;
+	margin-left: 40%;
+	margin-top: 60px;
+}
+
+input{
+	margin-top: 20px;
+}
+
+button{
+	margin-top: 20px;
+	margin-bottom: 60px;
 }
 
 .register{
 	display: grid;
 	grid-row: 2/3;
 	grid-column: 2/3;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #0000F0;
+	height: 10vh;
+	background-color: #10A070;
+	border-radius: 90px;
+}
+
+.register button{
+	margin-left: 20px;
+	width: 20%;
 }
 
 .footer{

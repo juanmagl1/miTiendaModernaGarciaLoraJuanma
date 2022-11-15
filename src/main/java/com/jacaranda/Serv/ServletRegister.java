@@ -2,6 +2,7 @@ package com.jacaranda.Serv;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,6 +43,21 @@ public class ServletRegister extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		CRUDSession crs = new CRUDSession();
+		
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		String password_con = request.getParameter("password_con");
+		LocalDate fechaNacimiento = LocalDate.parse(request.getParameter("fechaNacimiento"));
+		String gender = request.getParameter("gender");
+		
+		if(username != null && (password != null && password_con != null
+				&& password.equals(password_con)) && fechaNacimiento != null
+				&& gender != null){
+			
+		}else {
+			response.sendRedirect("Error.html");
+		}
+		
 	}
 
 }
