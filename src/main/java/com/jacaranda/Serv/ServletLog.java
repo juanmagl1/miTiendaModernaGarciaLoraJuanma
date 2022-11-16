@@ -48,7 +48,7 @@ public class ServletLog extends HttpServlet {
 		CRUDSession crs = new CRUDSession();
 		
 		String username = request.getParameter("username");
-		String password = request.getParameter("password");
+		String password = crs.getMd5(request.getParameter("password"));
 		//String password = crs.getMd5(request.getParameter("password"));
 		
 		if(username != null && password != null) {
@@ -63,10 +63,10 @@ public class ServletLog extends HttpServlet {
 						+ "<html>"
 						+ "<head>"
 						+ "<meta charset=\"UTF-8\">"
+						+ "<link href='style.css' rel='stylesheet' type='text/css'>"
 						+ "<title>"
 						+ "Lista de Elementos"
 						+ "</title>"
-						+ "<link rel='stylesheet' type='text/css' href='lista.css'"
 						+ "</head>"
 						+ "<body>"
 						+ "<table border='2'>"

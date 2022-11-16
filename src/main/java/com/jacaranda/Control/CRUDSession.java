@@ -1,9 +1,11 @@
 package com.jacaranda.Control;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -14,8 +16,6 @@ import com.jacaranda.Clases.Categoria;
 import com.jacaranda.Clases.Compra;
 import com.jacaranda.Clases.Elemento;
 import com.jacaranda.Clases.Usuario;
-
-import org.apache.commons.codec.digest.DigestUtils;
 
 public class CRUDSession {
 
@@ -39,7 +39,7 @@ public class CRUDSession {
 	
 	//CONTROL DE USUARIOS
 	
-	public void saveUser(String nombre,String apellidos, String password, String genero, LocalDateTime fecha) {
+	public void saveUser(String nombre,String apellidos, String password, String genero, LocalDate fecha) {
 		Usuario usuario = new Usuario(nombre,apellidos,password,genero,fecha);
 		session.getTransaction().begin();
 		session.save(usuario);

@@ -9,7 +9,7 @@ use tiendaAcosta;
 CREATE TABLE usuario(
 	nombre varchar(30),
 	apellidos varchar(30),
-	password varchar(30),
+	password varchar(32),
 	fecha date,
 	genero varchar(30),
 	

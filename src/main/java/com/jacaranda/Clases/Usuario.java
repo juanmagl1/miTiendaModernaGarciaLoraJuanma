@@ -1,6 +1,6 @@
 package com.jacaranda.Clases;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -17,7 +17,7 @@ public class Usuario {
 	private String nombre;
 	private String apellidos;
 	private String password;
-	private LocalDateTime fecha;
+	private LocalDate fecha;
 	private String genero;
 	@OneToMany(mappedBy="id",cascade = CascadeType.ALL,orphanRemoval = true)
 	private List<Compra> listaCompra;
@@ -27,7 +27,7 @@ public class Usuario {
 		super();
 	}
 	
-	public Usuario(String nombre, String apellidos, String password, String genero, LocalDateTime fecha) {
+	public Usuario(String nombre, String apellidos, String password, String genero, LocalDate fecha) {
 		super();
 		this.nombre = nombre;
 		this.apellidos = apellidos;
@@ -55,11 +55,11 @@ public class Usuario {
 		this.apellidos = apellidos;
 	}
 
-	public LocalDateTime getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(LocalDateTime fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
 
