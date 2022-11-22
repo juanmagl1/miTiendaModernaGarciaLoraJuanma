@@ -79,7 +79,7 @@ public class ServletRegister extends HttpServlet {
 			//CREADO CON EXITO, CON UN BOTON PARA MANDARLO DE VUELTA AL INDEX Y
 			//QUE DESDE AHI INICIE SESION
 			
-			response.sendRedirect("confRegister.jsp");
+			response.sendRedirect("confRegister.html");
 			
 			//A FALTA DE SABER REDIRIGIRLE A LA PAGINA LISTA MANTENIENDO EL USER
 			

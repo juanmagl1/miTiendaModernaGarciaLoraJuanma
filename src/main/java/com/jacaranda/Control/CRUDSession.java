@@ -13,7 +13,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import com.jacaranda.Clases.Categoria;
-import com.jacaranda.Clases.Compra;
+import com.jacaranda.Clases.Pedido;
 import com.jacaranda.Clases.Elemento;
 import com.jacaranda.Clases.Usuario;
 
@@ -139,26 +139,26 @@ public class CRUDSession {
 		session.getTransaction().commit();
 	}
 	
-	//CONTROL DE COMPRAS
+	//CONTROL DE PEDIDOS
 	
-	public void saveCompra(Usuario user, Elemento elemento, int cantidad, double precio, LocalDateTime fecha) {
-		Compra compra = new Compra(user,elemento,cantidad,precio,fecha);
+	public void savePedido(Usuario user, Elemento elemento, int cantidad, double precio, LocalDateTime fecha) {
+		Pedido pedido = new Pedido(cantidad,precio,fecha,user,elemento);
 		session.getTransaction().begin();
-		session.save(compra);
+		session.save(pedido);
 		session.getTransaction().commit();
 	}
 	
-	public Compra getCompra(int id) {
-		Compra res = session.get(Compra.class, id);
+	public Pedido getPedido(int id) {
+		Pedido res = session.get(Pedido.class, id);
 		return res;
 	}
 	
-	public List<Compra> getAllCompra(){
-		List<Compra> listaCompras = new ArrayList<>();
-		Compra compra;
+	public List<Pedido> getAllPedido(){
+		List<Pedido> listaCompras = new ArrayList<>();
+		Pedido compra;
 		int id = 1;
 		do {
-			compra = session.get(Compra.class, id);
+			compra = session.get(Pedido.class, id);
 			if(compra != null) {
 				listaCompras.add(compra);
 			}
@@ -168,7 +168,7 @@ public class CRUDSession {
 	}
 	
 	public void deleteCompra(int id) {
-		Compra compra = session.get(Compra.class, id);
+		Pedido compra = session.get(Pedido.class, id);
 		session.getTransaction().begin();
 		session.delete(compra);
 		session.getTransaction().commit();

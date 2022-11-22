@@ -20,7 +20,7 @@ public class Usuario {
 	private LocalDate fecha;
 	private String genero;
 	@OneToMany(mappedBy="id",cascade = CascadeType.ALL,orphanRemoval = true)
-	private List<Compra> listaCompra;
+	private List<Pedido> listaCompra;
 	
 	
 	public Usuario() {
@@ -34,7 +34,7 @@ public class Usuario {
 		this.password = password;
 		this.fecha = fecha;
 		this.genero = genero;
-		this.listaCompra = new ArrayList<Compra>();
+		this.listaCompra = new ArrayList<Pedido>();
 	}
 	
 	//GETTERS & SETTERS
@@ -71,11 +71,11 @@ public class Usuario {
 		this.genero = genero;
 	}
 
-	public List<Compra> getListaCompra() {
+	public List<Pedido> getListaCompra() {
 		return listaCompra;
 	}
 
-	public void setListaCompra(List<Compra> listaCompra) {
+	public void setListaCompra(List<Pedido> listaCompra) {
 		this.listaCompra = listaCompra;
 	}
 	

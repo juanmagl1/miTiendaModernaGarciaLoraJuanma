@@ -23,7 +23,7 @@ public class Elemento {
 	@JoinColumn(name="id_categoria")
 	private Categoria categoria;
 	@OneToMany(mappedBy="id",cascade = CascadeType.ALL,orphanRemoval = true)
-	private List<Compra> listaCompra;
+	private List<Pedido> listaCompra;
 	
 	public Elemento() {
 		super();
@@ -35,7 +35,7 @@ public class Elemento {
 		this.descripcion = descripcion;
 		this.precio = precio;
 		this.categoria = categoria;
-		this.listaCompra = new ArrayList<Compra>();
+		this.listaCompra = new ArrayList<Pedido>();
 	}
 	
 	//GETTERS & SETTERS

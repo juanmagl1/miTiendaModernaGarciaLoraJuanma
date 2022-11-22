@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.jacaranda.Clases.Carrito;
 import com.jacaranda.Clases.Elemento;
 import com.jacaranda.Control.CRUDSession;
 
@@ -49,6 +50,7 @@ public class ServletLog extends HttpServlet {
 		
 		String username = request.getParameter("username");
 		String password = crs.getMd5(request.getParameter("password"));
+		Carrito carrito = new Carrito();
 		//String password = crs.getMd5(request.getParameter("password"));
 		
 		if(username != null && password != null) {
@@ -56,6 +58,7 @@ public class ServletLog extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("login", "True");
 				session.setAttribute("usuario", username);
+				session.setAttribute("carrito", carrito);
 				response.setContentType("text/html");
 				
 				out.append(
@@ -76,6 +79,12 @@ public class ServletLog extends HttpServlet {
 						+ "<th id='descripcion'> Descripcion </th>"
 						+ "<th id='precio'> Precio </th>"
 						+ "<th id='categoria'> Categoria </th>"
+						
+						//Añadir if para que solo los administradores puedan
+						//añadir un nuevo elemento. En el else, este th se quedara
+						//vacio
+						
+						+ "<th id='newElemento'><a href='newElemento.html'>Añadir elemento</a></th>"
 						);
 				
 				List<Elemento> listaElementos = crs.getAllElemento();
@@ -88,6 +97,7 @@ public class ServletLog extends HttpServlet {
 							+ "<td>" + elemento.getDescripcion() + "</td>"
 						    + "<td>" + elemento.getPrecio() + "</td>"
 						    + "<td>" + elemento.getCategoria().getNombre() + "</td>"
+						    + "<td><form action='addPedido.jsp'></form></td>"
 						    + "</tr>"
 							);
 				}
