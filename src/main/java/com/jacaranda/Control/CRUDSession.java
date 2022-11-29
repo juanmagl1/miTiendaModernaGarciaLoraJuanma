@@ -21,7 +21,7 @@ public class CRUDSession {
 
 	private StandardServiceRegistry sr;
 	private SessionFactory sf;
-	private Session session;
+	private static Session session;
 
 	public CRUDSession() {
 		sr = new StandardServiceRegistryBuilder().configure().build();
@@ -29,149 +29,16 @@ public class CRUDSession {
 		session = sf.openSession();
 	}
 	
-	public String getMd5(String input) {
-		String pass = null;
-		if(input!=null) {
-			pass = DigestUtils.md5Hex(input);
-		}
-		return pass;
+	public static Session getSession() {
+		return session;
 	}
 	
 	//CONTROL DE USUARIOS
 	
-	public void saveUser(String nombre,String apellidos, String password, String genero, LocalDate fecha) {
-		Usuario usuario = new Usuario(nombre,apellidos,password,genero,fecha);
-		session.getTransaction().begin();
-		session.save(usuario);
-		session.getTransaction().commit();
-	}
-	
-	public Usuario getUser(String nombre) {
-		Usuario res =(Usuario) session.get(Usuario.class, nombre);
-		return res;
-	}
-	
-	public void deleteUser(int id) {
-		Usuario usuario = (Usuario) session.get(Usuario.class, id);
-		session.getTransaction().begin();
-		session.delete(usuario);
-		session.getTransaction();
-	}
-	
 	//CONTROL DE CATEGORIAS
-	
-	public void saveCategoria(String nombre, String descripcion) {
-		Categoria categoria = new Categoria(nombre,descripcion);
-		session.getTransaction().begin();
-		session.save(categoria);
-		session.getTransaction().commit();
-	}
-	
-	public Categoria getCategoria(int id) {
-		Categoria res = session.get(Categoria.class, id);
-		return res;
-	}
-	
-	public Categoria getCategoria(String nombre) {
-		List<Categoria> listaCategorias = getAllCategoria();
-		Categoria res = new Categoria();
-		for (Categoria categoria:listaCategorias) {
-			if(categoria.getNombre().equals(nombre)) {
-				res = categoria;
-			}
-		}
-		return res;
-	}
-	
-	public List<Categoria> getAllCategoria(){
-		List<Categoria> listaCategorias = new ArrayList<>();
-		Categoria categoria;
-		int id = 1;
-		do {
-			categoria = session.get(Categoria.class, id);
-			if(categoria != null) {
-				listaCategorias.add(categoria);
-			}
-			id++;
-		}while(categoria != null);
-		return listaCategorias;
-	}
-	
-	public void deleteCategoria(int id) {
-		Categoria categoria = session.get(Categoria.class, id);
-		session.getTransaction().begin();
-		session.delete(categoria);
-		session.getTransaction().commit();
-	}
 	
 	//CONTROL DE ELEMENTOS
 	
-	public void saveElemento(String nombre, String descripcion, double precio, Categoria categoria) {
-		Elemento elemento = new Elemento(nombre,descripcion,precio,categoria);
-		session.getTransaction().begin();
-		session.save(elemento);
-		session.getTransaction().commit();
-	}
-	
-	public Elemento getElemento(int id) {
-		Elemento res = session.get(Elemento.class, id);
-		return res;
-	}
-	
-	public List<Elemento> getAllElemento(){
-		List<Elemento> listaElementos = new ArrayList<>();
-		Elemento elemento;
-		int id = 1;
-		do {
-			elemento = session.get(Elemento.class, id);
-			if(elemento != null) {
-				listaElementos.add(elemento);
-			}
-			id++;
-		}while(elemento != null);
-		return listaElementos;
-	}
-	
-	public void deleteElemento(int id) {
-		Elemento elemento = session.get(Elemento.class, id);
-		session.getTransaction().begin();
-		session.delete(elemento);
-		session.getTransaction().commit();
-	}
-	
 	//CONTROL DE PEDIDOS
-	
-	public void savePedido(Usuario user, Elemento elemento, int cantidad, double precio, LocalDateTime fecha) {
-		Pedido pedido = new Pedido(cantidad,precio,fecha,user,elemento);
-		session.getTransaction().begin();
-		session.save(pedido);
-		session.getTransaction().commit();
-	}
-	
-	public Pedido getPedido(int id) {
-		Pedido res = session.get(Pedido.class, id);
-		return res;
-	}
-	
-	public List<Pedido> getAllPedido(){
-		List<Pedido> listaCompras = new ArrayList<>();
-		Pedido compra;
-		int id = 1;
-		do {
-			compra = session.get(Pedido.class, id);
-			if(compra != null) {
-				listaCompras.add(compra);
-			}
-			id++;
-		}while(compra != null);
-		return listaCompras;
-	}
-	
-	public void deleteCompra(int id) {
-		Pedido compra = session.get(Pedido.class, id);
-		session.getTransaction().begin();
-		session.delete(compra);
-		session.getTransaction().commit();
-	}
 	
 }

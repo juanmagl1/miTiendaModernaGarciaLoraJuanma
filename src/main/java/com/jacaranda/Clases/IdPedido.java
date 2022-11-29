@@ -17,9 +17,9 @@ public class IdPedido implements Serializable{
 	}
 	
 	public IdPedido(int cantidad, double precio, LocalDateTime fecha, Usuario user, Elemento elemento) {
-		this.cantidad = cantidad;
-		this.precio = precio;
-		this.fecha = fecha;
+		this.setCantidad(cantidad);
+		this.setPrecio(precio);
+		this.setFecha(fecha);
 		this.user = user.getNombre();
 		this.elemento = elemento.getId();
 	}
@@ -55,6 +55,30 @@ public class IdPedido implements Serializable{
 			return false;
 		IdPedido other = (IdPedido) obj;
 		return elemento == other.elemento && Objects.equals(user, other.user);
+	}
+
+	public int getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
+	}
+
+	public double getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
+
+	public LocalDateTime getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(LocalDateTime fecha) {
+		this.fecha = fecha;
 	}
 
 }

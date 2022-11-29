@@ -13,7 +13,10 @@ import javax.servlet.http.HttpSession;
 
 import com.jacaranda.Clases.Carrito;
 import com.jacaranda.Clases.Elemento;
+import com.jacaranda.Clases.Usuario;
+import com.jacaranda.Control.CRUDElemento;
 import com.jacaranda.Control.CRUDSession;
+import com.jacaranda.Control.CRUDUsuario;
 
 /**
  * Servlet implementation class Servlet
@@ -48,17 +51,27 @@ public class ServletLog extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		CRUDSession crs = new CRUDSession();
 		
-		String username = request.getParameter("username");
-		String password = crs.getMd5(request.getParameter("password"));
-		Carrito carrito = new Carrito();
+		String username;
+		String password;
+		
+		HttpSession session = request.getSession();
+		
+		if(!session.getAttribute("login").equals("true")) {
+			username = request.getParameter("username");
+			password = CRUDUsuario.getMd5(request.getParameter("password"));
+			Carrito carrito = new Carrito();
+			session.setAttribute("carrito", carrito);
+		}else {
+			Usuario user = CRUDUsuario.getUser((String) session.getAttribute("usuario"));
+			username = user.getNombre();
+			password = user.getPassword();
+		}
 		//String password = crs.getMd5(request.getParameter("password"));
 		
 		if(username != null && password != null) {
-			if(crs.getUser(username) != null && crs.getUser(username).getNombre().equals(username) && crs.getUser(username).getPassword().equals(password)) {
-				HttpSession session = request.getSession();
+			if(CRUDUsuario.getUser(username) != null && CRUDUsuario.getUser(username).getNombre().equals(username) && CRUDUsuario.getUser(username).getPassword().equals(password)) {
 				session.setAttribute("login", "True");
 				session.setAttribute("usuario", username);
-				session.setAttribute("carrito", carrito);
 				response.setContentType("text/html");
 				
 				out.append(
@@ -84,12 +97,14 @@ public class ServletLog extends HttpServlet {
 						//añadir un nuevo elemento. En el else, este th se quedara
 						//vacio
 						
-						+ "<th id='newElemento'><a href='newElemento.html'>Añadir elemento</a></th>"
+						+ "<th id='newElemento'><form action='ServletCarrito' method='post'><button type='submit'>Ver carrito</button></form></th>"
 						);
 				
-				List<Elemento> listaElementos = crs.getAllElemento();
+				List<Elemento> listaElementos = CRUDElemento.getAllElemento();
 				
 				for (Elemento elemento : listaElementos) {
+					session.setAttribute("elemento", elemento);
+					session.setAttribute("precio", elemento.getPrecio());
 					out.append(
 							"<tr>"
 							+ "<td>" + elemento.getId() + "</td>"
@@ -97,7 +112,7 @@ public class ServletLog extends HttpServlet {
 							+ "<td>" + elemento.getDescripcion() + "</td>"
 						    + "<td>" + elemento.getPrecio() + "</td>"
 						    + "<td>" + elemento.getCategoria().getNombre() + "</td>"
-						    + "<td><form action='addPedido.jsp'></form></td>"
+						    + "<td><form action='ServletAdd' method='post'><button type='submit'>Add</button><input type='number' name='cantidad'></form></td>"
 						    + "</tr>"
 							);
 				}

@@ -3,7 +3,6 @@ package com.jacaranda.Serv;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.jacaranda.Control.CRUDSession;
+import com.jacaranda.Control.CRUDUsuario;
 
 /**
  * Servlet implementation class ServletRegister
@@ -71,9 +71,9 @@ public class ServletRegister extends HttpServlet {
 			session.setAttribute("usuario", username);
 			response.setContentType("text/html");
 			
-			String passwordEncode = crs.getMd5(password);
+			String passwordEncode = CRUDUsuario.getMd5(password);
 			
-			crs.saveUser(username, lastname, passwordEncode, gender, fechaNacimiento);
+			CRUDUsuario.saveUser(username, lastname, passwordEncode, gender, fechaNacimiento);
 			
 			//HTML INTERMEDIO PARA CONFIRMAR AL USUARIO QUE SU USUARIO HA SIDO
 			//CREADO CON EXITO, CON UN BOTON PARA MANDARLO DE VUELTA AL INDEX Y
