@@ -1,41 +1,51 @@
 package com.jacaranda.Control;
-
 import java.time.LocalDate;
 
-import org.apache.commons.codec.digest.DigestUtils;
 import org.hibernate.Session;
+
 
 import com.jacaranda.Clases.Usuario;
 
+
 public class CRUDUsuario {
 	
-	private static Session session = CRUDSession.getSession();
 	
-	public static String getMd5(String input) {
-		String pass = null;
-		if(input!=null) {
-			pass = DigestUtils.md5Hex(input);
+	public CRUDUsuario() {
+		super();
+	
+	}
+	
+	public static boolean validateUser(String login, String password) {
+		Session session=CRUDSession.getSession();
+		boolean valid = false;
+		Usuario u = (Usuario) session.get(Usuario.class,login);
+		if (u==null) {
+			u=new Usuario();
+		}else {
+			valid=true;
+			
 		}
-		return pass;
+		return valid;
 	}
-	
-	public static void saveUser(String nombre,String apellidos, String password, String genero, LocalDate fecha) {
-		Usuario usuario = new Usuario(nombre,apellidos,password,genero,fecha);
-		session.getTransaction().begin();
-		session.save(usuario);
-		session.getTransaction().commit();
+	public static boolean addUser(Usuario u) {
+		Session session=CRUDSession.getSession();
+		boolean valid=false;
+		try {
+			session.getTransaction().begin();
+			session.saveOrUpdate(u);
+			session.getTransaction().commit();
+			valid=true;
+		}catch (Exception e) {
+			e.getMessage();
+		}
+		return valid;
+
 	}
-	
-	public static Usuario getUser(String nombre) {
-		Usuario res =(Usuario) session.get(Usuario.class, nombre);
-		return res;
+	public static Usuario findUser(String user) {
+		Session session=CRUDSession.getSession();
+		Usuario aux=session.get(Usuario.class, user);
+		return aux;
 	}
-	
-	public static void deleteUser(int id) {
-		Usuario usuario = (Usuario) session.get(Usuario.class, id);
-		session.getTransaction().begin();
-		session.delete(usuario);
-		session.getTransaction();
-	}
+
 
 }

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.jacaranda.Clases.Carrito;
+//import com.jacaranda.Clases.Carrito;
 import com.jacaranda.Clases.Elemento;
 import com.jacaranda.Clases.Usuario;
 import com.jacaranda.Control.CRUDElemento;
@@ -49,27 +49,26 @@ public class ServletLog extends HttpServlet {
 		
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		CRUDSession crs = new CRUDSession();
 		
 		String username;
 		String password;
 		
 		HttpSession session = request.getSession();
 		
-		if(!session.getAttribute("login").equals("true")) {
+		if(session.getAttribute("login")==null ) {
 			username = request.getParameter("username");
-			password = CRUDUsuario.getMd5(request.getParameter("password"));
-			Carrito carrito = new Carrito();
-			session.setAttribute("carrito", carrito);
+			password = request.getParameter("password");
+//			Carrito carrito = new Carrito();
+//			session.setAttribute("carrito", carrito);
 		}else {
-			Usuario user = CRUDUsuario.getUser((String) session.getAttribute("usuario"));
+			Usuario user = CRUDUsuario.findUser(((String) session.getAttribute("usuario")));
 			username = user.getNombre();
 			password = user.getPassword();
 		}
 		//String password = crs.getMd5(request.getParameter("password"));
 		
 		if(username != null && password != null) {
-			if(CRUDUsuario.getUser(username) != null && CRUDUsuario.getUser(username).getNombre().equals(username) && CRUDUsuario.getUser(username).getPassword().equals(password)) {
+			if(CRUDUsuario.validateUser(username,password)) {
 				session.setAttribute("login", "True");
 				session.setAttribute("usuario", username);
 				response.setContentType("text/html");

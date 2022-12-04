@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -14,13 +15,14 @@ import javax.persistence.OneToMany;
 public class Usuario {
 	
 	@Id
+	@Column(name="nombre")
 	private String nombre;
 	private String apellidos;
 	private String password;
 	private LocalDate fecha;
 	private String genero;
-	@OneToMany(mappedBy="id",cascade = CascadeType.ALL,orphanRemoval = true)
-	private List<Pedido> listaCompra;
+//	@OneToMany(mappedBy="nombre",cascade = CascadeType.ALL,orphanRemoval = true)
+//	private List<Pedido> listaCompra;
 	
 	
 	public Usuario() {
@@ -34,7 +36,7 @@ public class Usuario {
 		this.password = password;
 		this.fecha = fecha;
 		this.genero = genero;
-		this.listaCompra = new ArrayList<Pedido>();
+//		this.listaCompra = new ArrayList<Pedido>();
 	}
 	
 	//GETTERS & SETTERS
@@ -71,13 +73,13 @@ public class Usuario {
 		this.genero = genero;
 	}
 
-	public List<Pedido> getListaCompra() {
-		return listaCompra;
-	}
-
-	public void setListaCompra(List<Pedido> listaCompra) {
-		this.listaCompra = listaCompra;
-	}
+//	public List<Pedido> getListaCompra() {
+//		return listaCompra;
+//	}
+//
+//	public void setListaCompra(List<Pedido> listaCompra) {
+//		this.listaCompra = listaCompra;
+//	}
 	
 	public String getPassword() {
 		return password;
@@ -89,7 +91,7 @@ public class Usuario {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(apellidos, fecha, genero, listaCompra, nombre, password);
+		return Objects.hash(apellidos, fecha, genero, nombre, password);
 	}
 
 	@Override
@@ -102,7 +104,7 @@ public class Usuario {
 			return false;
 		Usuario other = (Usuario) obj;
 		return Objects.equals(apellidos, other.apellidos) && Objects.equals(fecha, other.fecha)
-				&& Objects.equals(genero, other.genero) && Objects.equals(listaCompra, other.listaCompra)
+				&& Objects.equals(genero, other.genero) 
 				&& Objects.equals(nombre, other.nombre) && Objects.equals(password, other.password);
 	}
 

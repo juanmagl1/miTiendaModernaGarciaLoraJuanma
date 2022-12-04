@@ -48,16 +48,16 @@ create table compra(
 	constraint fk_compra_elemento foreign key (id_elemento) references elemento(id)
 );
 
-insert into usuario (nombre, apellidos, password, fecha, genero) values ('felipe','felipe', 'felipe', '11/11/2021', 'Female');
-insert into usuario (nombre, apellidos, password, fecha, genero) values ('Madison','felipe', 'felipe', '11/29/2021', 'Male');
-insert into usuario (nombre, apellidos, password, fecha, genero) values ('Terencio','felipe', 'felipe', '07/27/2021', 'Bigender');
-insert into usuario (nombre, apellidos, password, fecha, genero) values ('Cora','felipe', 'felipe', '10/15/2022', 'Female');
-insert into usuario (nombre, apellidos, password, fecha, genero) values ('Filmore','felipe', 'felipe', '10/07/2020', 'Genderqueer');
-insert into usuario (nombre, apellidos, password, fecha, genero) values ('Haleigh','felipe', 'felipe', '11/29/2019', 'Male');
-insert into usuario (nombre, apellidos, password, fecha, genero) values ('Lefty','felipe', 'felipe', '03/16/2022', 'Male');
-insert into usuario (nombre, apellidos, password, fecha, genero) values ('Rhys','felipe', 'Wilford', '07/16/2022', 'Male');
-insert into usuario (nombre, apellidos, password, fecha, genero) values ('Kary','felipe', 'Twigge', '01/11/2021', 'Female');
-insert into usuario (nombre, apellidos, password, fecha, genero) values ('Heather','felipe', 'Hellwing', '12/22/2021', 'Female');
+insert into usuario (nombre, apellidos, password, fecha, genero) values ('felipe','felipe', 'felipe', '2022-04-05', 'Female');
+insert into usuario (nombre, apellidos, password, fecha, genero) values ('Madison','felipe', 'felipe', '2022-04-05', 'Male');
+insert into usuario (nombre, apellidos, password, fecha, genero) values ('Terencio','felipe', 'felipe', '2022-04-05', 'Bigender');
+insert into usuario (nombre, apellidos, password, fecha, genero) values ('Cora','felipe', 'felipe', '2022-04-05', 'Female');
+insert into usuario (nombre, apellidos, password, fecha, genero) values ('Filmore','felipe', 'felipe', '2022-04-05', 'Genderqueer');
+insert into usuario (nombre, apellidos, password, fecha, genero) values ('Haleigh','felipe', 'felipe', '2022-04-05', 'Male');
+insert into usuario (nombre, apellidos, password, fecha, genero) values ('Lefty','felipe', 'felipe', '2022-04-05', 'Male');
+insert into usuario (nombre, apellidos, password, fecha, genero) values ('Rhys','felipe', 'Wilford', '2022-04-05', 'Male');
+insert into usuario (nombre, apellidos, password, fecha, genero) values ('Kary','felipe', 'Twigge', '2022-04-05', 'Female');
+insert into usuario (nombre, apellidos, password, fecha, genero) values ('Heather','felipe', 'Hellwing', '2022-04-05', 'Female');
 
 insert into categoria (id, nombre, descripcion) values (1, 'CAT1', 'scelerisque');
 insert into categoria (id, nombre, descripcion) values (2, 'CAT2', 'varius');

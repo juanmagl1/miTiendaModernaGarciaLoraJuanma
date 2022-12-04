@@ -3,6 +3,7 @@ package com.jacaranda.Serv;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.time.Period;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.jacaranda.Clases.Usuario;
 import com.jacaranda.Control.CRUDSession;
 import com.jacaranda.Control.CRUDUsuario;
 
@@ -55,37 +57,41 @@ public class ServletRegister extends HttpServlet {
 		
 		try {
 			 fechaNacimiento = LocalDate.parse(request.getParameter("fechaNacimiento"));
-			
+			 Period edad=Period.between(fechaNacimiento, LocalDate.now());
+			 if (edad.getYears()>=18) {
+				 String gender = request.getParameter("gender");
+					
+					if(username != null && (password != null && password_con != null
+							&& password.equals(password_con)) && fechaNacimiento != null
+							&& gender != null){
+						
+						HttpSession session = request.getSession();
+						session.setAttribute("login", "True");
+						session.setAttribute("usuario", username);
+						response.setContentType("text/html");
+						
+//						String passwordEncode = CRUDUsuario.getMd5(password);
+						Usuario u=new Usuario(username, lastname,password, gender, fechaNacimiento);
+						CRUDUsuario.addUser(u);
+						
+						//HTML INTERMEDIO PARA CONFIRMAR AL USUARIO QUE SU USUARIO HA SIDO
+						//CREADO CON EXITO, CON UN BOTON PARA MANDARLO DE VUELTA AL INDEX Y
+						//QUE DESDE AHI INICIE SESION
+						
+						response.sendRedirect("confRegister.html");
+						
+						//A FALTA DE SABER REDIRIGIRLE A LA PAGINA LISTA MANTENIENDO EL USER
+
+			 }else {
+					response.sendRedirect("Error.html");
+				}
+			 }
 		}catch (Exception e) {
 			response.sendRedirect("Error.html");
 		}
 		
-		String gender = request.getParameter("gender");
+					
 		
-		if(username != null && (password != null && password_con != null
-				&& password.equals(password_con)) && fechaNacimiento != null
-				&& gender != null){
-			
-			HttpSession session = request.getSession();
-			session.setAttribute("login", "True");
-			session.setAttribute("usuario", username);
-			response.setContentType("text/html");
-			
-			String passwordEncode = CRUDUsuario.getMd5(password);
-			
-			CRUDUsuario.saveUser(username, lastname, passwordEncode, gender, fechaNacimiento);
-			
-			//HTML INTERMEDIO PARA CONFIRMAR AL USUARIO QUE SU USUARIO HA SIDO
-			//CREADO CON EXITO, CON UN BOTON PARA MANDARLO DE VUELTA AL INDEX Y
-			//QUE DESDE AHI INICIE SESION
-			
-			response.sendRedirect("confRegister.html");
-			
-			//A FALTA DE SABER REDIRIGIRLE A LA PAGINA LISTA MANTENIENDO EL USER
-			
-		}else {
-			response.sendRedirect("Error.html");
-		}
 		
 	}
 

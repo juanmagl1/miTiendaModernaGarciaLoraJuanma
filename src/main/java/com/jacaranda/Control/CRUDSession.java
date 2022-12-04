@@ -13,24 +13,21 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import com.jacaranda.Clases.Categoria;
-import com.jacaranda.Clases.Pedido;
 import com.jacaranda.Clases.Elemento;
 import com.jacaranda.Clases.Usuario;
 
 public class CRUDSession {
 
-	private StandardServiceRegistry sr;
-	private SessionFactory sf;
-	private static Session session;
+	private static StandardServiceRegistry sr= new StandardServiceRegistryBuilder().configure().build();
+	private static SessionFactory sf=new MetadataSources(sr).buildMetadata().buildSessionFactory();
+	private static Session sesion=sf.openSession();
 
 	public CRUDSession() {
-		sr = new StandardServiceRegistryBuilder().configure().build();
-		sf = new MetadataSources(sr).buildMetadata().buildSessionFactory();
-		session = sf.openSession();
+	
 	}
 	
 	public static Session getSession() {
-		return session;
+		return sesion;
 	}
 	
 	//CONTROL DE USUARIOS
